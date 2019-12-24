@@ -4,5 +4,18 @@
 
 .start-page, .question-page, .final-page {
     height: 100vh;
+    padding-top: 20vh; 
     text-align: center;
+}
+
+.question-page, .final-page {
+    display: none;
+}
+
+input, label, .btn {
+    cursor: pointer;
+}
+
+.selected {
+    color: blue;
 }

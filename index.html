@@ -9,28 +9,32 @@
 </head>
 <body>
     <!-- start quiz view -->
+    <main class="all-pages">
     <div class="start-page">
+        
+    <header>
     <h1>King of the Hill Quiz</h1>
-    <p>Do you have what it takes to sell propane and propane accessories?</p>
-    <button>Begin</button>
+    </header>
+    <section>
+        <p>Do you have what it takes to sell propane and propane accessories?</p>
+        <button type="button" class="btn start-btn">Begin</button>
+    </section>
     </div>
 
-<hr>
 <!-- questions view -->
     <div class="question-page">
     <h1>Question 1</h1>
-    <h2>What is the name of Dale's main alter ego?</h2>
+    <h2></h2>
     <form action="" class="form-questions">
-        <input type="radio" name="question-one">Dusty Paddleford</input><br>
+        <!-- <input type="radio" name="question-one">Dusty Paddleford</input><br>
         <input type="radio" name="question-one">Rusty Shackleford</input><br>
         <input type="radio" name="question-one">John Redcorn</input><br>
-        <input type="radio" name="question-one">Who said Dale isn't the alter ego?</input><br>
-        <button>Submit</button>
-    </form>
+        <input type="radio" name="question-one">Who said Dale isn't the alter ego?</input><br> -->
+    </form>     
+    <button type="button" class="btn submit-btn">Submit</button>
     <h3>Question 1/15</h3>
     <h3>Score: 0</h3>
     </div>
-<hr>
 <!-- final screen -->
 <div class="final-page">
 <h1>Congrats!</h1>
@@ -38,5 +42,9 @@
 <p>Want to try again?</p>
 <button>Restart</button>
 </div>
+</main>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
 </body>
 </html>

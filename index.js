@@ -32,6 +32,19 @@ $(".question-page form" ).on('click', 'label', function(){
     $(this).addClass('selected');
 });
 
+// listens for user to submit selection
+function submitAnswer(){
+$(".submit-btn").click(function(e){
+    e.preventDefault();
+    if($('label.selected').length){
+        let userChoice = parseInt($('label.selected').attr('id'));
+        console.log(userChoice);
+        checkAnswer(userChoice);
+    }else{
+        console.log("no answer chosen")
+    }
+});
+}
 //function to display current question
 
 function showQuestion(){
@@ -42,15 +55,34 @@ function showQuestion(){
         $('.question-page form').append(`
         <br>
         <input type="radio" id="${i}" name="question${currentQuestion}">
-        <label for=${i}>${question.selections[i]}</label>`)
+        <label for=${i} id="${i}">${question.selections[i]}</label>`)
     }
 }
 
-//function to sumbit answer
+//function to check answer
+function checkAnswer(userChoice){
+    let question = questions[currentQuestion];
+    if (question.answer === userChoice){
+        console.log("correct")
+        currentScore++;
 
-
+    }else{
+        //displays correct answer when wrong 
+        console.log("not correct")
+    }
+    currentQuestion++;
+    if (currentQuestion >= questions.length){
+        showResults();
+    }else {
+    showQuestion();   
+    } 
+}
 //function to render current score
-
+function showResults() {
+    $('.question-page').hide();
+    $('.final-page').show();
+    $('.final-page h2').html(`You got ${currentScore} out of ${questions.length} correct!`)
+}
 //function to check if answer was correct
 
 //function to continue to next question
@@ -63,6 +95,7 @@ function showQuestion(){
 function constQuiz(){
     startQuiz();
     showQuestion();
+    submitAnswer();
 }
 //starting quiz on page load
 $(constQuiz);

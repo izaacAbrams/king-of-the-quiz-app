@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.start-page, .question-page, .final-page {
-    height: 100vh;
+.start-page, .question-page, .final-page, .correct-page, .incorrect-page {
+    height: 60vh;
     text-align: center;
 }

@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+.start-page, .question-page, .final-page {
+    height: 100vh;
+    text-align: center;
+}

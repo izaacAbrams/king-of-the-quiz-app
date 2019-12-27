@@ -69,9 +69,10 @@ $(".submit-btn").click(function(e){
 $('.final-page button').click(function(e){
     e.preventDefault();
     restartQuiz();
+    makeImage();
 });
 
-$('.btn').on('click', makeImage());
+// $('.btn').on('click', makeImage());
 //function to display current question
 
 function showQuestion(){
@@ -87,6 +88,7 @@ function showQuestion(){
         <label for="${i}" id="${i}">${question.selections[i]}</label></div>`);
     }
     showScoreandNumber();
+    makeImage();
     // $('.question-page form').append('<br><button type="submit" class="btn submit-btn">Submit</button>')
 }
 
@@ -145,7 +147,6 @@ function constQuiz(){
     showQuestion();
     showScoreandNumber();
     submitAnswer();
-    makeImage();
 }
 //starting quiz on page load
 $(constQuiz);

@@ -16,6 +16,19 @@ let questions = [
       answer: 0
   }
 ];
+let sidePicture = [{
+    source: "images/hank.png", 
+    alt: "Hank Hill",
+},{
+    source: "images/bill.png", 
+    alt: "Bill from King of the Hill"
+},{
+    source: "images/boomhaur.png",
+    alt: "Boomhaur from King of the Hill"
+},{
+    source: "images/dale.png",
+    alt: "Dale from King of the Hill"
+}]
 
 // function to start the quiz
 function startQuiz(){
@@ -27,18 +40,22 @@ $('.start-btn').on('click', function(e){
 
 }
 //listens for user to select an item on the label
-$(".question-page form" ).on('click', 'input',function(){
+$(".question-page form" ).on('click', '.selections',function(){
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
-    // $(this).closest('label').addClass('selected');
+    if ($(this).hasClass('selected')){
+        $(this).children('input').prop('checked', true);
+    }else {
+        $(this).children('input').removeProp('checked'); 
+    }
 });
 
 // listens for user to submit selection
 function submitAnswer(){
 $(".submit-btn").click(function(e){
     e.preventDefault();
-    if($('input.selected').length){
-        let userChoice = parseInt($('input.selected').attr('id'));
+    if($('.selections.selected').length){
+        let userChoice = parseInt($('.selections.selected').children('input').attr('id'));
         console.log(userChoice);
         checkAnswer(userChoice);
     }else{
@@ -53,22 +70,31 @@ $('.final-page button').click(function(e){
     e.preventDefault();
     restartQuiz();
 });
+
+$('.btn').on('click', makeImage());
 //function to display current question
 
 function showQuestion(){
     let question = questions[currentQuestion];
-    $('.question-page form').text(question.title);
-    // $('.question-page form').html('');
-
+    $('.question-page form').html(`<h1 class="q-title">${question.title}</h1>`);
+    $('.question-page form').append(`<div class="number-and-score">
+  
+    </div>`);
     for(let i=0; i < question.selections.length; i++){
         $('.question-page form').append(`
-        <br>
-        <input type="radio" id="${i}" name="question${currentQuestion}"/>
-        <label for="${i}" id="${i}">${question.selections[i]}</label>`);
+        <div class="selections">
+        <input type="radio" id="${i}" name="question${currentQuestion}">
+        <label for="${i}" id="${i}">${question.selections[i]}</label></div>`);
     }
+    showScoreandNumber();
     // $('.question-page form').append('<br><button type="submit" class="btn submit-btn">Submit</button>')
 }
 
+function makeImage(){
+    $('.question-page .side-pic').html(`<img src=
+    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="${sidePicture.alt}"`);
+
+}
 //function to check answer
 function checkAnswer(userChoice){
     let question = questions[currentQuestion];
@@ -88,6 +114,14 @@ function checkAnswer(userChoice){
     showQuestion();   
     } 
 }
+
+//render score and question number
+
+function showScoreandNumber(){
+    $('.question-page .number-and-score').html(`<h2>Score: ${currentScore}</h2>
+    <h2>Question: ${currentQuestion}/${questions.length}</h2>`);    
+}
+
 //function to render final score
 function showResults() {
     $('.question-page').hide();
@@ -109,7 +143,9 @@ function restartQuiz(){
 function constQuiz(){
     startQuiz();
     showQuestion();
+    showScoreandNumber();
     submitAnswer();
+    makeImage();
 }
 //starting quiz on page load
 $(constQuiz);

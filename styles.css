@@ -2,13 +2,13 @@
     box-sizing: border-box;
 }
 
-.start-page, .question-page, .final-page {
+.all-pages {
     height: 100vh;
     padding-top: 20vh; 
     text-align: center;
 }
 
-.question-page, .final-page {
+.question-page, .final-page, .correct-page, .incorrect-page {
     display: none;
 }
 

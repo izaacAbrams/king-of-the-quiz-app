@@ -35,6 +35,20 @@ let questions = [
       answer: 0
   }
 ];
+let sidePicture = [{
+    source: "images/hank.png", 
+    alt: "Hank Hill",
+},{
+    source: "images/bill.png", 
+    alt: "Bill from King of the Hill"
+},{
+    source: "images/boomhaur.png",
+    alt: "Boomhaur from King of the Hill"
+},{
+    source: "images/dale.png",
+    alt: "Dale from King of the Hill"
+}];
+
 // function to start the quiz
 $('.start-btn').on('click', function(e){
     e.preventDefault();
@@ -42,12 +56,17 @@ $('.start-btn').on('click', function(e){
     $('.question-page').show();
 })
 //listens for user to select an item on the label
-$(".question-page form" ).on('click', 'input', function(){
+$('.question-page form' ).on('click', '.selections', function(){
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
+    if ($(this).hasClass('selected')){
+        $(this).children('input').prop('checked', true);
+    }else {
+        $(this).children('input').removeProp('checked'); 
+    }
 });
 // listens for user to submit selection
-$(".submit-btn").click(function(e){
+$('.submit-btn').click(function(e){
     e.preventDefault();
     submitAnswer();
 });
@@ -55,6 +74,7 @@ $(".submit-btn").click(function(e){
 $('.final-page button').click(function(e){
     e.preventDefault();
     restartQuiz();
+    makeImage();
 });
 $('.cont-btn').click(function(e){
     e.preventDefault();
@@ -68,13 +88,21 @@ $('.cont-btn').click(function(e){
 
 function showQuestion(){
     let question = questions[currentQuestion];
-    $('.question-page form').text(question.title);
+    $('.question-page form').html(`<h1 class="q-title">${question.title}</h1>`);
+    $('.question-page form').append(`<div class="number-and-score"></div>`);
     for(let i=0; i < question.selections.length; i++){
-        $('.question-page form').append(`
-        <br>
+        $('.question-page form').append(`<div class="selections"
         <input type="radio" id="${i}" name="question${currentQuestion}" required>
-        <label for="${i}" id="${i}">${question.selections[i]}</label>`);
+        <label for="${i}" id="${i}">${question.selections[i]}</label></div>`);
     }
+    showScoreandNumber();
+    makeImage();
+}
+
+function makeImage(){
+    $('.question-page .side-pic').html(`<img src=
+    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="King of the Hill character image" class="side-img">`);
+
 }
 
 function submitAnswer(){
@@ -111,6 +139,13 @@ function checkAnswer(userChoice){
     } 
 }
 
+//render score and question number
+
+function showScoreandNumber(){
+    $('.question-page .number-and-score').html(`<h2>Score: ${currentScore}</h2>
+    <h2>Question: ${currentQuestion}/${questions.length}</h2>`);    
+}
+
 //function to render correct/incorrect screens 
 function resultsPage(result){
     if (result === "correct"){
@@ -119,15 +154,12 @@ function resultsPage(result){
 }
 //function to render final score
 function showResults() {
-    // if($('.correct-page').is(':visible')){
         $('.cont-btn').click(function(){
             $('.correct-page').hide();
             $('.incorrect-page').hide();
             $('.final-page').show();
         })
-    // }
     $('.question-page').hide();
-    // $('.final-page').show();
     $('.final-page h2').html(`You got ${currentScore} out of ${questions.length} correct!`)
 
 }

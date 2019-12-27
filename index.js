@@ -92,7 +92,7 @@ function showQuestion(){
 
 function makeImage(){
     $('.question-page .side-pic').html(`<img src=
-    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="${sidePicture.alt}"`);
+    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="${sidePicture.alt}">`);
 
 }
 //function to check answer

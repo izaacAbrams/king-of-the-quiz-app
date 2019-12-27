@@ -5,52 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>King of the Hill Quiz</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500|Work+Sans|Yanone+Kaffeesatz:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- start quiz view -->
     <main class="all-pages">
-    <div class="start-page">
+    <section class="start-page">
     <img src="images/koth-logo.svg" alt="King of the Hill Logo" class="logo">
     <header>
-    <h1>King of the Hill Quiz</h1>
+    <h1 class="main-header">Trivia Quiz</h1>
     </header>
-    <section>
+    <section class="start-page-contents">
         <p>Do you have what it takes to sell propane and propane accessories?</p>
-        <button type="submit" class="btn start-btn">Begin</button>
-    </section>
-    </div>
-
+        <button type="submit" class="btn start-btn">BEGIN</button>
+    </section>   
+    <img src="images/koth.png" alt="Characters from King of the Hill" class="start-pic">
+</section>
 <!-- questions view -->
-    <div class="question-page">   
-    <section class="side-pic">
-    </section>
-    <form action="/" class="form-questions">
-    </form>     
+    <section class="question-page">   
+    <aside class="side-pic">
+    </aside>
+    <form action="/" class="form-questions"></form>     
  <button type="submit" class="btn submit-btn">Submit</button> 
-    </div>
+</section>
 <!-- final screen -->
-<div class="final-page">
-<h1>Summary!</h1>
-<h2></h2>
-<p>Want to try again?</p>
-<button type="submit" class="btn restart-btn">Restart</button>
-</div>
-<!-- correct screen -->
-<div class="correct-page">
-    <p></p>
-    <div class="correct-score-number"></div>
-    <img src="images/winner.jpg" alt="Bobby Hill">
-    <button type="submit" class="btn cont-btn">Next</button>
-</div>
-<!-- incorrect screen -->
- <div class="incorrect-page">
-        <p></p>
-        <div class="incorrect-score-number"></div>
-        <img src="images/loser.jpg" alt="Mad Hank Hill" srcset="">
-        <button type="submit" class="btn cont-btn">Next</button>
-</main>
+<section class="final-page">
+<h1>Summary:</h1>
+<h2></h2><br>
+<h3></h3>
 
+<img src="" alt="" class="result-img">
+<button type="submit" class="btn restart-btn">Restart</button>
+</section>
+<!-- correct screen -->
+<section class="correct-page">
+    <h1 class="score-response-text"></h1>
+    <div class="correct-score-number"></div>
+    <img src="images/winner.jpg" alt="Bobby Hill" class="pic correct-pic">
+    <button type="submit" class="btn cont-btn">Next</button>
+</section>
+<!-- incorrect screen -->
+ <section class="incorrect-page">
+        <h1 class="score-response-text"></h1>
+        <div class="incorrect-score-number"></div>
+        <img src="images/loser.jpg" alt="Mad Hank Hill" class="pic incorrect-pic">
+        <button type="submit" class="btn cont-btn">Next</button>
+ </section>
+</main>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="index.js"></script>
 </body>

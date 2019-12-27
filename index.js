@@ -35,6 +35,7 @@ let questions = [
       answer: 0
   }
 ];
+//contains array of objects for the side image 
 let sidePicture = [{
     source: "images/hank.png", 
     alt: "Hank Hill",
@@ -76,6 +77,7 @@ $('.final-page button').click(function(e){
     restartQuiz();
     makeImage();
 });
+//listens for next button on the result pages 
 $('.cont-btn').click(function(e){
     e.preventDefault();
     $('.correct-page').hide();
@@ -84,8 +86,7 @@ $('.cont-btn').click(function(e){
     $('.question-page').show();
     }
 })
-//function to display current question
-
+//function to create and display current question
 function showQuestion(){
     let question = questions[currentQuestion];
     $('.question-page form').html(`<h1 class="q-title">${question.title}</h1>`);
@@ -98,17 +99,16 @@ function showQuestion(){
     showScoreandNumber();
     makeImage();
 }
-
+//generates an image from the array to display a random character image
 function makeImage(){
     $('.question-page .side-pic').html(`<img src=
-    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="King of the Hill character image" class="side-img">`);
-
+    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} 
+    alt="King of the Hill character image" class="side-pic">`);
 }
-
+//stores answer chosen, and makes choosing an answer required
 function submitAnswer(){
     if($('.selections.selected').length){
         let userChoice = parseInt($('.selections.selected').children('input').attr('id'));
-        console.log(userChoice);
         checkAnswer(userChoice);
      }else{
      alert("Please select an answer.")
@@ -119,15 +119,14 @@ function checkAnswer(userChoice){
     let question = questions[currentQuestion];
     let currentAnswerNumber = question.answer;
     let currentAnswer = question.selections[currentAnswerNumber];
-    console.log(currentAnswer)
     if (question.answer === userChoice){
+        //displays correct answer, shows results page
         correctPage(currentAnswer);
         $('.question-page').hide();
         $('.correct-page').show();
         currentScore++;
     }else{
         //displays correct answer when wrong 
-        console.log("not correct");
         incorrectPage(currentAnswer);
         $('.question-page').hide();
         $('.incorrect-page').show();
@@ -140,41 +139,70 @@ function checkAnswer(userChoice){
     showQuestion();   
     } 
 }
-
 //render score and question number
-
 function showScoreandNumber(){
     $('.question-page .number-and-score').html(`<h2>Score: ${currentScore}</h2>
     <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);    
 }
-
-//function to render correct/incorrect screens 
+//function to render correct screen
 function correctPage(currentAnswer){
+    $('correct-page h1').html('');
     $('.correct-page .correct-score-number').html(`<h2>Score: ${currentScore + 1}</h2>
     <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);
-    $('.correct-page p').append(`Correct! The answer is ${currentAnswer}`);
+    $('.correct-page h1').html(`<img src="images/right.png" class="icon" alt="checkmark">
+    Correct!</h1><h1 class="main-response-text">The answer is ${currentAnswer}`);
 }
-
+//renders incorrect screen
 function incorrectPage(currentAnswer) {
-    $('incorrect-page p').html('')
+    $('incorrect-page h1').html('');
     $('.incorrect-page .incorrect-score-number').html(`<h2>Score: ${currentScore}</h2>
     <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);
-    $('.incorrect-page p').html(`Incorrect! The answer is actually ${currentAnswer}`);
+    $('.incorrect-page h1').html(`<img src="images/wrong.png" class="icon" alt="red x">
+    Incorrect!</h1><h1 class="main-response-text">The answer is actually ${currentAnswer}`);
+}
+//changes final picture and text based on score
+function determineGrade(){
+    let finalGrade = currentScore / questions.length;
+    if (finalGrade === 1){
+        $('.final-page .result-img').attr('src', 'images/perfect-score.png');
+        $('.final-page h3').text("That's a perfect score!");
+    } else if (finalGrade === 0){
+        $('.final-page .result-img').attr('src', 'images/worst-score.png');
+        $('.final-page h3').text("That's literally the worst score possible.");
+    } else if (finalGrade >= .9){
+        $('.final-page .result-img').attr('src', 'images/a.jpg');
+        $('.final-page h3').text("That's an A!"); 
+    } else if (finalGrade >= .8 && finalGrade < .9){
+        $('.final-page .result-img').attr('src', 'images/b.jpg');
+        $('.final-page h3').text("That's a B!"); 
+    } else if (finalGrade >= .7 && finalGrade < .8){
+        $('.final-page .result-img').attr('src', 'images/c.jpg');
+        $('.final-page h3').text("That's a C, I'll take it."); 
+    } else if (finalGrade >= .6 && finalGrade < .7){
+        $('.final-page .result-img').attr('src', 'images/d.png');
+        $('.final-page h3').text("That's a D, maybe study up some."); 
+    } else {
+        $('.final-page .result-img').attr('src', 'images/f.jpg');
+        $('.final-page h3').text("That's an F, you can do better than that."); 
+    }    
 }
 //function to render final score
 function showResults() {
-        $('.cont-btn').click(function(){
+        $('.cont-btn').on('click', function() {
+            //stops from displaying both result page and final page on the last question
+            if (currentQuestion >= questions.length){
             $('.correct-page').hide();
             $('.incorrect-page').hide();
+            determineGrade();
             $('.final-page').show();
-        })
+        }else {
+            $('.final-page').hide();
+        }
+    });
     $('.question-page').hide();
-    $('.final-page h2').html(`You got ${currentScore} out of ${questions.length} correct!`)
-
+    $('.final-page h2').html(`You got ${currentScore} out of ${questions.length} correct!`);     
 }
-
 // function to restart the quiz
-
 function restartQuiz(){
     $('.final-page').hide();
     $('.question-page').show();
@@ -182,10 +210,8 @@ function restartQuiz(){
     currentQuestion = 0;
     showQuestion();
 }
-
 // main function called to run the functions
 function constQuiz(){
-    showQuestion();
     showQuestion();
     showScoreandNumber();
 }

@@ -94,7 +94,7 @@ function showQuestion(){
 
 function makeImage(){
     $('.question-page .side-pic').html(`<img src=
-    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="${sidePicture.alt}" class="side-img">`);
+    ${sidePicture[Math.floor(Math.random() * sidePicture.length)].source} alt="King of the Hill character image" class="side-img">`);
 
 }
 //function to check answer

@@ -91,7 +91,7 @@ function showQuestion(){
     $('.question-page form').html(`<h1 class="q-title">${question.title}</h1>`);
     $('.question-page form').append(`<div class="number-and-score"></div>`);
     for(let i=0; i < question.selections.length; i++){
-        $('.question-page form').append(`<div class="selections"
+        $('.question-page form').append(`<div class="selections">
         <input type="radio" id="${i}" name="question${currentQuestion}" required>
         <label for="${i}" id="${i}">${question.selections[i]}</label></div>`);
     }
@@ -106,8 +106,8 @@ function makeImage(){
 }
 
 function submitAnswer(){
-    if($('input.selected').length){
-        let userChoice = parseInt($('input.selected').attr('id'));
+    if($('.selections.selected').length){
+        let userChoice = parseInt($('.selections.selected').children('input').attr('id'));
         console.log(userChoice);
         checkAnswer(userChoice);
      }else{
@@ -117,16 +117,18 @@ function submitAnswer(){
 //function to check answer
 function checkAnswer(userChoice){
     let question = questions[currentQuestion];
+    let currentAnswerNumber = question.answer;
+    let currentAnswer = question.selections[currentAnswerNumber];
+    console.log(currentAnswer)
     if (question.answer === userChoice){
-        console.log("correct");
-        resultsPage("correct");
+        correctPage(currentAnswer);
         $('.question-page').hide();
         $('.correct-page').show();
         currentScore++;
     }else{
         //displays correct answer when wrong 
         console.log("not correct");
-        resultsPage("incorrect");
+        incorrectPage(currentAnswer);
         $('.question-page').hide();
         $('.incorrect-page').show();
     }
@@ -143,14 +145,21 @@ function checkAnswer(userChoice){
 
 function showScoreandNumber(){
     $('.question-page .number-and-score').html(`<h2>Score: ${currentScore}</h2>
-    <h2>Question: ${currentQuestion}/${questions.length}</h2>`);    
+    <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);    
 }
 
 //function to render correct/incorrect screens 
-function resultsPage(result){
-    if (result === "correct"){
+function correctPage(currentAnswer){
+    $('.correct-page .correct-score-number').html(`<h2>Score: ${currentScore + 1}</h2>
+    <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);
+    $('.correct-page p').append(`Correct! The answer is ${currentAnswer}`);
+}
 
-    }
+function incorrectPage(currentAnswer) {
+    $('incorrect-page p').html('')
+    $('.incorrect-page .incorrect-score-number').html(`<h2>Score: ${currentScore}</h2>
+    <h2>Question: ${currentQuestion + 1}/${questions.length}</h2>`);
+    $('.incorrect-page p').html(`Incorrect! The answer is actually ${currentAnswer}`);
 }
 //function to render final score
 function showResults() {
@@ -167,7 +176,6 @@ function showResults() {
 // function to restart the quiz
 
 function restartQuiz(){
-    
     $('.final-page').hide();
     $('.question-page').show();
     currentScore = 0;
@@ -178,6 +186,8 @@ function restartQuiz(){
 // main function called to run the functions
 function constQuiz(){
     showQuestion();
+    showQuestion();
+    showScoreandNumber();
 }
 //starting quiz on page load
 $(constQuiz);

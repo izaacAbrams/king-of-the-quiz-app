@@ -59,14 +59,13 @@ input, label, .btn {
     border: 2px solid white;
     border-radius: 10px;
     padding: 30px 50px;
-    margin: 50px 20px;
-    text-align: left;
+    margin: 50px 10px;
 }
 
 .form-questions {
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 80%;
 } 
 
 h1 {
@@ -95,7 +94,14 @@ h1 {
 
 .side-pic {
     position: absolute;
+    left: -10px;
 }
 .side-img {
     height: 400px;
+}
+
+@media screen and (max-width: 1120px) {
+    .side-pic {
+        display: none;
+    }
 }

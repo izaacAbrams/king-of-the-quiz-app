@@ -25,7 +25,7 @@ let questions = [
       answer: 3
   },
   {
-      title: "How many men does Cotten claim to have killed in the war?",
+      title: "How many men does Cotton claim to have killed in the war?",
       selections: ["100", "50", "1", "None"],
       answer: 1
   },
@@ -33,6 +33,51 @@ let questions = [
       title: "What country are Khan, Mihn, and Connie from?",
       selections: ["Laos", "England", "China", "South Korea"],
       answer: 0
+  },
+  {
+      title: "Which one of Luanne's boyfriends died in an explosion?",
+      selections: ["Hank", "Buckley", "Bobby", "Buck"],
+      answer: 1
+  },
+  {
+      title: "What does Bill do for a living?",
+      selections: ["Exterminator", "Accountant", "Principal", "Army Barber"],
+      answer: 3
+  },
+  {
+      title: "Who does Luanne's mother date when she comes to stay with the Hills?",
+      selections: ["John", "Bill", "Buckley", "Joseph"],
+      answer: 1
+  },
+  {
+      title: "What is Hank's dogs name?",
+      selections: ["Butterfree", "Duke", "Tom", "Ladybird"],
+      answer: 3
+  },
+  {
+      title: "Who developed gout as a result of overeating at a deli?",
+      selections: ["Bill", "Buck", "Bobby", "Cotton"],
+      answer: 2
+  },
+  {
+      title: "Which of the following did Peggy work as?",
+      selections: ["Bookkeeper", "Beekeeper", "Therapist", "Subsitute Teacher"],
+      answer: 3
+  },
+  {
+      title: "Who is Hank's boss?",
+      selections: ["Buck", "Bobby", "Nacy", "Dooley"],
+      answer: 0
+  },
+  {
+      title: "What is Bill's ex-wife's name?",
+      selections: ["Alliston", "Brandy", "Lanore", "Peggy"],
+      answer: 2
+  },
+  {
+      title: "What did Hank and Peggy do for their anniversary?",
+      selections: ["Scuba dive", "Skydive", "Trip to Mexico", "Nothing"],
+      answer: 1
   }
 ];
 //contains array of objects for the side image 
@@ -111,7 +156,7 @@ function submitAnswer(){
         let userChoice = parseInt($('.selections.selected').children('input').attr('id'));
         checkAnswer(userChoice);
      }else{
-     alert("Please select an answer.")
+     alert("Please select an answer.");
      }
 }
 //function to check answer

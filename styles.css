@@ -33,16 +33,13 @@ p {
     position: fixed;
     width: 0;
 }
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 1185px) {
     .side-pic {
         display: none;
     }
     .btn {
         margin-bottom: 20px;
     }
-}
-.btn:focus {
-    outline:0;
 }
 .all-pages {
     height: 100vh;
@@ -56,9 +53,6 @@ p {
 }
 .correct-page, .incorrect-page {
     padding-top: 10vh;
-}
-.start-page {
-    overflow: hidden;
 }
 input, label, .btn {
     cursor: pointer;
@@ -93,6 +87,7 @@ input, label, .btn {
     background-color: #DB5461;
     border: 2px solid #DB5461;
     color: #F1EDEE;
+    outline:0;
 }
 .correct {
    background-image: url("images/right.png"); 

@@ -5,56 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>King of the Hill Quiz</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500|Work+Sans|Yanone+Kaffeesatz:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- start quiz view -->
-    <div class="start-page">
-    <h1>King of the Hill Quiz</h1>
-    <p>Do you have what it takes to sell propane and propane accessories?</p>
-    <button>Begin</button>
-    </div>
-
-<hr>
+    <main class="all-pages">
+    <section class="start-page">
+    <img src="images/koth-logo.svg" alt="King of the Hill Logo" class="logo">
+    <header>
+    <h1 class="main-header">Trivia Quiz</h1>
+    </header>
+    <section class="start-page-contents">
+        <p>Do you have what it takes to sell propane and propane accessories?</p>
+        <button type="submit" class="btn start-btn">BEGIN</button>
+    </section>   
+    <img src="images/koth.png" alt="Characters from King of the Hill" class="start-pic">
+</section>
 <!-- questions view -->
-    <div class="question-page">
-    <h1>Question 1</h1>
-    <h2>What is the name of Dale's main alter ego?</h2>
-    <form action="" class="form-questions">
-        <input type="radio" name="question-one">Dusty Paddleford</input><br>
-        <input type="radio" name="question-one">Rusty Shackleford</input><br>
-        <input type="radio" name="question-one">John Redcorn</input><br>
-        <input type="radio" name="question-one">Who said Dale isn't the alter ego?</input><br>
-        <button>Submit</button>
-    </form>
-    <h3>Question 1/15</h3>
-    <h3>Score: 0</h3>
-    </div>
-<hr>
+    <section class="question-page">   
+    <aside class="side-pic">
+    </aside>
+    <form action="/" class="form-questions"></form>     
+ <button type="submit" class="btn submit-btn">Submit</button> 
+</section>
 <!-- final screen -->
-<div class="final-page">
-<h1>Congrats!</h1>
-<h2>You got 8 out of 15 correct!</h2>
-<p>Want to try again?</p>
-<button>Restart</button>
-</div>
-<hr>
+<section class="final-page">
+<h1>Summary:</h1>
+<h2></h2><br>
+<h3></h3>
+
+<img src="" alt="" class="result-img">
+<button type="submit" class="btn restart-btn">Restart</button>
+</section>
 <!-- correct screen -->
-<div class="correct-page">
-<h1>King of the Hill Quiz</h1>
-<h2>Score: 1/15</h2>
-<h2>Question: 1/15</h2>
-<p>Correct! The answer is Rusty Shackleford!</p>
-<button>Next</button>
-</div>
-<hr>
+<section class="correct-page">
+    <h1 class="score-response-text"></h1>
+    <div class="correct-score-number"></div>
+    <img src="images/winner.jpg" alt="Bobby Hill" class="pic correct-pic">
+    <button type="submit" class="btn cont-btn">Next</button>
+</section>
 <!-- incorrect screen -->
-<div class="incorrect-page">
-    <h1>King of the Hill Quiz</h1>
-    <h2>Score: 0/15</h2>
-    <h2>Question: 1/15</h2>
-    <p>Incorrect! Almost, but the correct answer was Rusty Shackleford</p>
-    <button>Next</button>
-</div>
+ <section class="incorrect-page">
+        <h1 class="score-response-text"></h1>
+        <div class="incorrect-score-number"></div>
+        <img src="images/loser.jpg" alt="Mad Hank Hill" class="pic incorrect-pic">
+        <button type="submit" class="btn cont-btn">Next</button>
+ </section>
+</main>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
 </body>
 </html>
